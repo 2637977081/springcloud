@@ -1,0 +1,10 @@
+Cygwin的官方网站下载Cygwin的安装程序，地址是：
+    http://www.cygwin.com/
+
+或者直接使用下载连接来下载安装程序，下载连接是：
+
+    http://www.cygwin.com/setup.exe
+	
+使用阿里云镜像(http://mirrors.aliyun.com/cygwin/)
+
+配置系统变量：xxx/bin
