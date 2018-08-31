@@ -1,0 +1,33 @@
+打开Eclipse更新代码，maven build后
+控制台
+--进入eclipse工作空间
+1、cd eclipse-workspace/
+2、cd rndealer-microservice-user/
+3、sh build.sh
+version: v18010201
+password: yonyou@1205
+
+登录阿里云dev.aliyun.com 华北2区
+ccyonyou/yonyou@1205
+
+找到项目rndealer-microservice-user
+
+镜像版本 基本信息
+
+控制台
+ssh root@rndealer.ccyonyou.com
+password:yonyou@1205
+下载镜像
+docker pull registry.cn-beijing.aliyuncs.com/rndealer/rndealer-microservice-user:v18010201
+
+docker ps -a
+
+docker stop user 停服
+
+docker rm user 删除镜像
+
+docker run -d --net=host --name user registry.cn-beijing.aliyuncs.com/rndealer/rndealer-microservice-user:v18010201
+
+
+
+

@@ -1,0 +1,49 @@
+/**********************************************************************
+* $Id: ErrCodeJSON.java ErrCodeJSON ,v0.1 2016年9月24日 下午12:07:01 DuanMinglei Exp
+* Copyright ©2016 yonyou . All rights reserved
+***********************************************************************/
+ 
+package com.cc.yonyou.rndealer.domain.json;
+
+import java.util.HashMap;
+import java.util.Map; 
+
+/**
+* 功能说明：
+* 创建者：段明磊
+* E-mail: duanml1@yonyou.com
+* 创建时间：2016年9月24日
+* <pre>
+* 修改时间:       修改者:            
+* 修改内容：
+* </pre>
+* 版本：0.1
+*/
+public class ErrCodeJSON extends BaseJSON{
+	public int errCode;
+	public String errMsg;
+	public String errMsgEn;
+	/**
+	 * 功能说明：构造函数
+	 * 修改时间：2016年9月24日
+	 * @param i
+	 * @param string
+	 * @param string2
+	 */
+	
+	public ErrCodeJSON(int errCode, String errMsg, String errMsgEn) {
+		this.errCode=errCode;
+		this.errMsg=errMsg;
+		this.errMsgEn=errMsgEn;
+		this.resultMsg=errMsg;
+		this.resultCode=errCode;
+	}
+	public Map<String,Object> toMap(){
+		Map<String,Object> map=new HashMap<String,Object>();
+		
+		map.put("errCode", this.errCode);
+		map.put("errMsg", errMsg);
+		map.put("errMsgEn", errMsgEn);
+		return map;
+	}
+}

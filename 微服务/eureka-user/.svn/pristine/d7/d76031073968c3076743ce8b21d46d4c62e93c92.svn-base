@@ -1,0 +1,140 @@
+/**********************************************************************
+* $Id: UserAuthoInterceptor.java UserAuthInterceptor ,v0.1 2016年7月13日 下午5:29:05 DuanMinglei Exp $
+* Copyright ©2016 yonyou . All rights reserved
+***********************************************************************/
+
+package com.cc.yonyou.rndealer.config;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.alibaba.fastjson.JSON;
+//import com.cc.yonyou.rndealer.service.CommonService;
+import com.cc.yonyou.rndealer.service.UserService;
+import com.cc.yonyou.rndealer.util.RedisUtil;
+
+/**
+* 功能说明：
+* 创建者：段明磊
+* E-mail: duanml1@yonyou.comØ
+* 创建时间：2016年7月13日
+* <pre>
+* 修改时间:       修改者:            
+* 修改内容：
+* </pre>
+* 版本：0.1
+*/
+public class WebInterceptor implements HandlerInterceptor {
+
+	Logger logger = Logger.getLogger(WebInterceptor.class);
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RedisUtil util;
+
+	
+	@Override
+	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
+			throws Exception {
+		
+
+		String url = request.getRequestURI();
+		/*System.out.println("***************************************************************************************************************************************");
+		System.out.println(url);
+		System.out.println("***************************************************************************************************************************************");*/
+		//logger.info("url====>"+url);
+		
+		//api接口调试相关地址
+		if (url.equals("/swagger-ui.html")
+				||url.equals("/error")
+				||url.equals("/configuration/ui")
+				||url.equals("/configuration/security")
+				||url.equals("/swagger-resources")
+				||url.equals("/v2/api-docs")
+				||url.equals("/help")) {
+			return true;
+		}
+		
+		//不需要token认证的地址请添加到这里  如果模块
+		if (url.equals("/user/login")
+				) {
+			return true;
+		}
+		
+		//用户手册相关功能API接口  免TOKEN认证
+		if (url.equals("/userManual/seriesList")
+				||url.equals("/userManual/videoList")
+				||url.equals("/userManual/videoInfo")) {
+			return true;
+		}
+		
+		//上门取送车(Html5)相关功能API接口  免TOKEN认证
+		if (url.equals("/drivingHtml5/getDrivingList")
+				||url.equals("/drivingHtml5/getPickCity")
+				||url.equals("/drivingHtml5/getOrderInfo")
+				||url.equals("/drivingHtml5/createOrder")
+				||url.equals("/drivingHtml5/getDealerListByCityName")
+				||url.equals("/drivingHtml5/getTrajectory")
+				||url.equals("/drivingHtml5/getOrderEstimateFee")
+				||url.equals("/drivingHtml5/getBalance")
+				||url.equals("/drivingHtml5/getDriver")) {
+			return true;
+		}
+
+		String token = request.getParameter("token");
+		
+		if(token==null){
+			
+			byte[] bytes = (JSON.toJSONString(ErrCode.ACCESS_TOKEN_INVALID)).getBytes();
+			response.setContentType("text/html;charset=UTF-8");
+			response.setContentLength(bytes.length);
+			response.getOutputStream().write(bytes);
+			response.getOutputStream().close();
+			
+			return false;
+		}
+		
+		//获取dealerUserId通过Token 如果dealerUserId=0则Token无效
+		int dealerUserId=userService.getUserIdByToken(token);
+		
+		if (dealerUserId==0) {
+
+			byte[] bytes = (JSON.toJSONString(ErrCode.ACCESS_TOKEN_INVALID)).getBytes();
+			response.setContentType("text/html;charset=UTF-8");
+			response.setContentLength(bytes.length);
+			response.getOutputStream().write(bytes);
+			response.getOutputStream().close();
+
+			return false;
+		}
+		
+		if(!userService.checkAuth(dealerUserId, url)){
+			byte[] bytes = (JSON.toJSONString(ErrCode.APP_CODE_8)).getBytes();
+			response.setContentType("text/html;charset=UTF-8");
+			response.setContentLength(bytes.length);
+			response.getOutputStream().write(bytes);
+			response.getOutputStream().close();
+			return false;
+		}
+
+		return true;
+	}
+
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+	}
+
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+
+	}
+
+}

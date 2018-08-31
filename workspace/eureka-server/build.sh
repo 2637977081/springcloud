@@ -1,0 +1,5 @@
+echo "version : "
+read  version
+docker login --username=ccyonyou registry.cn-beijing.aliyuncs.com
+docker build -t registry.cn-beijing.aliyuncs.com/ccyy_microservice/server:$version .
+docker push registry.cn-beijing.aliyuncs.com/ccyy_microservice/server:$version

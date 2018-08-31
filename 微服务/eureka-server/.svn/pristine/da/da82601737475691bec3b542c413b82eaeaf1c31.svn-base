@@ -1,0 +1,7 @@
+package com.cc.yonyou.rndealer.service;
+
+import com.cc.yonyou.rndealer.domain.json.BaseJSON;
+
+public interface LogService {
+	public BaseJSON addSystemLog(String serviceName,String fromIp,String text,int createId,String json,int logLevel);
+}

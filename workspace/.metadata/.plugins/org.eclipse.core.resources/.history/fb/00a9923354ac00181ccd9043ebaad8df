@@ -1,0 +1,18 @@
+package com.cc.yonyou;
+
+
+import org.springframework.boot.SpringApplication;
+4 import org.springframework.boot.autoconfigure.SpringBootApplication;
+5 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+
+@EnableConfigServer
+@SpringBootApplication
+public class BootMain {
+
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		SpringApplication.run(BootMain.class,args);
+	}
+
+}

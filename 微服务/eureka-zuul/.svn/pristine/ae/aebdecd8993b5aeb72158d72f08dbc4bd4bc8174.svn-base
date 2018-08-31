@@ -1,0 +1,21 @@
+package com.cc.yonyou.rndealer.service.server;
+
+import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.cc.yonyou.rndealer.domain.json.BaseJSON;
+import com.cc.yonyou.rndealer.service.fallback.UserServerFallback;
+
+
+@FeignClient(value="rndealer-microservice-user",fallback=UserServerFallback.class)
+public interface UserServer {
+	
+	@RequestMapping(value = "/user/getUserInfo", method = RequestMethod.GET)
+	public BaseJSON getUserInfo(@RequestParam(value = "phone")String phone);
+	
+	@RequestMapping(value = "/user/getRoleByUserId", method = RequestMethod.GET)
+	public BaseJSON getRoleByUserId(@RequestParam(value = "userId")String userId);
+	
+}

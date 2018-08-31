@@ -1,0 +1,27 @@
+package com.cc.yonyou.rndealer.service.fallback;
+
+import org.springframework.stereotype.Component;
+
+import com.cc.yonyou.rndealer.domain.json.BaseJSON;
+import com.cc.yonyou.rndealer.service.server.UserServer;
+@Component
+public class UserServerFallback implements UserServer{
+
+	@Override
+	public BaseJSON getUserInfo(String phone) {
+		// TODO Auto-generated method stub
+		BaseJSON baseJSON = new BaseJSON();
+		baseJSON.setResultCode(1);
+		baseJSON.setResultMsg("失败");
+		return baseJSON;
+	}
+
+	@Override
+	public BaseJSON getRoleByUserId(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+}

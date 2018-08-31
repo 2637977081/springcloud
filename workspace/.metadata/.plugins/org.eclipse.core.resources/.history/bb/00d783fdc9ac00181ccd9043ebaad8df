@@ -1,0 +1,10 @@
+package com.cc.yonyou.api;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class Api {
+	public String Hello(){
+		return "HelloWorld";
+	}
+}

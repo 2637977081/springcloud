@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Implementation-Title: eureka-server
+Implementation-Version: dev
+Built-By: G0149
+Implementation-Vendor-Id: com.cc.yonyou
+Build-Jdk: 1.8.0_111
+Implementation-URL: http://projects.spring.io/spring-boot/eureka-serve
+ r/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: com.cc.yonyou.BootMain
+

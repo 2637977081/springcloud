@@ -1,0 +1,44 @@
+package com.cc.yonyou.rndealer.service;
+
+import javax.servlet.http.HttpServletRequest;
+
+import com.cc.yonyou.rndealer.domain.json.BaseJSON;
+
+public interface UserService {
+	
+	/**
+	 * 
+	 * 功能说明    :登陆
+	 * 创建者         : 刘东强
+	 * E-mail  : liudqe@yonyou.com
+	 * 修改日期    : 2017年12月26日
+	 * @return
+	 */
+	public BaseJSON login(String phone,String password,HttpServletRequest request);
+	
+	/**
+	 * 
+	 * 功能说明    :获取用户角色信息
+	 * 创建者         : 刘东强
+	 * E-mail  : liudqe@yonyou.com
+	 * 修改日期    : 2017年12月27日
+	 * @param userId
+	 * @return
+	 */
+	public BaseJSON getRoleByUserId(String userId);
+	
+	/**
+	 * 
+	 * 功能说明    :通过token获取用户id
+	 * 创建者         : 刘东强
+	 * E-mail  : liudqe@yonyou.com
+	 * 修改日期    : 2017年12月27日
+	 * @param token
+	 * @return
+	 */
+	public int getUserIdByToken(String token);
+	
+	
+	
+	public boolean checkAuth(int userId, String url );
+}

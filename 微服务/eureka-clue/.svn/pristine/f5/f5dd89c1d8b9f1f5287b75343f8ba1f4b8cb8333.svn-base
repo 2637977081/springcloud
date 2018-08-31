@@ -1,0 +1,21 @@
+package com.cc.yonyou.rndealer.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cc.yonyou.rndealer.domain.json.BaseJSON;
+import com.cc.yonyou.rndealer.service.LogService;
+import com.cc.yonyou.rndealer.service.server.LogServer;
+@Service
+public class LogServiceimpl implements LogService{
+	@Autowired
+	LogServer logServer;
+	
+	@Override
+	public BaseJSON addSystemLog(String serviceName, String fromIp, String text, int createId, String json,
+			int logLevel) {
+		BaseJSON baseJSON = logServer.addSystemLog(serviceName, fromIp, text, createId, json, logLevel);
+		return baseJSON;
+	}
+	
+}
