@@ -1,0 +1,16 @@
+package com.cc.yonyou.rndealer.service.imp;
+
+import java.util.List;
+import java.util.Map;
+
+import com.cc.yonyou.rndealer.service.ClueService;
+
+public class ClueServiceImp implements ClueService{
+
+	@Override
+	public List<Map<String, Object>> getObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

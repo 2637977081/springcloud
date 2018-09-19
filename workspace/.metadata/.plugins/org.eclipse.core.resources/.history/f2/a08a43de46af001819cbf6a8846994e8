@@ -1,0 +1,7 @@
+package com.cc.yonyou.rndealer.service.imp;
+
+import com.cc.yonyou.rndealer.service.ClueService;
+
+public class ClueServiceImp implements ClueService{
+
+}

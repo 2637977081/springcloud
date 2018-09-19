@@ -1,0 +1,5 @@
+package com.cc.yonyou.rndealer.service;
+
+public interface ClueService {
+
+}

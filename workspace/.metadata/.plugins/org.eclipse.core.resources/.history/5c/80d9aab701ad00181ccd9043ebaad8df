@@ -1,0 +1,11 @@
+package com.cc.yonyou.rndealer.po;
+
+/**
+ * 
+ * @author lvgang
+ * @data 2018年8月31日17:37:33
+ *
+ */
+public class BaseJSON {
+
+}

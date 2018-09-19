@@ -1,0 +1,24 @@
+package com.cc.yonyou.rndealer.service.imp;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cc.yonyou.rndealer.service.ClueService;
+
+@Service
+public class ClueServiceImp implements ClueService{
+	
+	@Autowired
+	private ClueService clueService;
+	
+	@Override
+	public List<Map<String, Object>> getClue() {
+		List<Map<String,Object>> list = clueService.getClue();
+		return list;
+	}
+
+
+}
